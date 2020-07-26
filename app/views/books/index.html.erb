@@ -1,0 +1,48 @@
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<h1>Books</h1>
+<table>
+<thead>
+<tr>
+<th>Title</th>
+<th>Body</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<% @books.each do |blog| %>
+<tr>
+<td>
+<%= book.title %>
+</td>
+<td>
+<%= book.body %>
+</td>
+<td>
+<%= link_to "Show", book_path(book.id) %>
+<%= link_to "Edit", edit_book_path(book.id) %>
+<%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %>
+</td>
+</tr>
+<% end %>
+</tbody>
+</table>
+
+<!-- エラーがあったときだけ表示 -->
+<!-- ここまで -->
+<h3>New book</h3>
+<%= form_for(@book) do |f| %>
+
+<label>Title</label>
+<%= f.text_field :title %>
+
+<label>Body<labe
+<%= f.text_area :body %>
+
+<br><%= f.submit 'Create Book',metuod: :create %></br>
+
+<% end %>
+
